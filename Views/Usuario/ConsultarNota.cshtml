@@ -1,0 +1,48 @@
+﻿@model ProyectoAnalisis.Models.AdicionarUsuario
+@using Microsoft.AspNetCore.Authorization
+
+@{
+    if (User.IsInRole("Profesor"))
+    {
+        <h2>Insertar  Usuario</h2>
+
+        <form method="post" action="Agregar">
+            <div class="form-group">
+                <label asp-for="Nombre"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Rol"></label>
+                <select asp-for="Rol" class="form-control">
+                    <option value="Profesor">Profesor</option>
+                    <option value="Estudiante">Estudiante</option>
+                </select>
+                <span asp-validation-for="Rol" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contraseña"></label>
+                <input asp-for="Contraseña" class="form-control" type="password" />
+                <span asp-validation-for="Contraseña" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Direccion"></label>
+                <input asp-for="Direccion" class="form-control" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CorreoElectronico"></label>
+                <input asp-for="CorreoElectronico" class="form-control" />
+                <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+
+    }
+    else
+    {
+        <p>No tienes permisos para acceder a esta página.</p>
+    }
+}

@@ -1,0 +1,85 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>IniciarSesion</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/EstiloInicioSesion.css" asp-append-version="true" />
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+  
+
+</head>
+<body>
+
+   
+    <img class="wave" src="~/Img/vecteezy_wavy-orange-background-design-vector-wave-background_24535066.jpg">
+    <div class="container">
+        <div class="img">
+            <img src="~/Img/7989184-removebg-preview.png">
+        </div>
+
+        <div class="login-content">
+
+                        <form asp-controller="Inicio" asp-action="IniciarSesion" method="post">
+                <img class="mi-imagen" src="~/Img/usuario.png">
+                <h2 class="title">Bienvenido</h2>
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="div">
+
+
+                        <input class="input" type="text" required name="correo" autocomplete="off" placeholder="Correo electrónico" />
+
+                </div>
+                </div>
+                <div class="input-div pass">
+                    <div class="i">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="div">
+                        
+                        <input class="input" type="password" required name="clave" autocomplete="off" placeholder="Contraseña" />
+                        </div>
+                    </div>
+                           
+                           
+                                <button class="btn" type="submit">Iniciar Sesión</button>
+                    
+                            @if (ViewData["Mensaje"] != null)
+                            {
+
+                    <div class="form-group" id="mensajeAlerta">
+                        <div class="alert alert-warning rounded-pill" role="alert">
+                            <strong>@ViewData["Mensaje"]</strong>
+                        </div>
+
+
+                                </div>
+                            }
+                            ¿No tienes una cuenta? <a href="@Url.Action("Registrarse","Inicio")"> Registrate!</a>
+
+                        </form>
+        </div>
+    </div>
+
+  
+
+</body>
+</html>
+
+
+<script>
+    //para que si el usuario no es correcto muesreo que se debe registrar y luego desaparece el mensaje
+    setTimeout(function () {
+        document.getElementById("mensajeAlerta").style.display = "none";
+    }, 3000);
+        // El valor 3000 representa 3 segundos, puedes ajustarlo según lo necesites.
+</script>

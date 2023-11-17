@@ -1,0 +1,159 @@
+﻿@model IEnumerable<ProyectoAnalisis.Models.Usuario>
+@using Microsoft.AspNetCore.Authorization
+@{
+    ViewData["Title"] = "CrudUsuario";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Lora:wght@700&family=Montserrat:wght@900&family=Poppins:wght@900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+       
+        body {
+            font-size: 14px;
+           
+            color: #000000; /* Cambia el color del texto para que sea legible sobre el fondo */
+        }
+
+    
+        .banner-image {
+            background-image: url('@Url.Content("~/Img/crayons-1445053_1280.jpg")');
+            background-size: cover;
+            color: #000000;
+        }
+       
+        table {
+            width: 70%;
+            margin: 20px auto;
+            border-collapse: collapse;
+           
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #000;
+            font-size: 16px;
+            color: #000000;
+        }
+
+        th {
+            
+            font-weight: bold; /* Agrega negrita a los títulos de las columnas */
+            font-family: 'Lora', serif;
+            text-align: center;
+       
+        }
+
+        .table th {
+            background-color:  #F2D230;
+            padding: 8px;
+        }
+
+        .table td {
+            background-color: #F2F8F6;
+            padding: 8px;
+        }
+
+
+
+        a {
+            text-decoration: none;
+            color: #000000;
+            font-weight: 900;
+            font-family: 'Poppins', sans-serif;
+      
+        }
+
+            a:hover {
+                color: #1D438A;
+                
+            }
+
+        .custom-btn-edit {
+            background-color: #4ED998; 
+            color: #000000;
+        }
+
+        .custom-btn-details {
+            background-color: #F2D230; 
+            color: #000000;
+        }
+
+        .custom-btn-delete {
+            background-color: #D92D07; 
+            color: #000000;
+        }
+
+        .custom-btn-edit:hover,
+        .custom-btn-details:hover,
+        .custom-btn-delete:hover {
+                font-weight: bold;
+         }
+    </style>
+    
+  
+</head>
+<body>
+    <img class="banner-image">
+    <p>
+        <a asp-action="Create">Crear Usuario</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                Nombre
+                </th>
+                <th>
+                  Rol
+                </th>
+   
+                <th>
+                   Dirección
+                </th>
+                <th>
+                  Correo
+                </th>
+                <th>Opciones</th>
+            
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rol)
+                    </td>
+             
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Direccion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CorreoElectronico)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" class="btn btn-sm custom-btn-edit" asp-route-id="@item.Id">Editar</a> |
+                        <a asp-action="Details" class="btn btn-sm custom-btn-details" asp-route-id="@item.Id">Detalles</a> |
+                        <a asp-action="Delete" class="btn btn-sm custom-btn-delete" asp-route-id="@item.Id">Eliminar</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+   
+</body>
+</html>
+

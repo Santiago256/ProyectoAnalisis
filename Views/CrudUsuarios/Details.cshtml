@@ -1,0 +1,155 @@
+﻿@model ProyectoAnalisis.Models.Usuario
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Lora:wght@700&family=Montserrat:wght@900&family=Poppins:wght@900&display=swap" rel="stylesheet">
+    <style>
+        .custom-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #000000;
+            background-color: #4ED998; /* Puedes cambiar este color */
+            border: 1px solid #4ED998;
+            border-radius: 5px;
+         
+        }
+
+            .custom-btn:hover {
+                color: #000000;
+                font-weight:bold;
+            }
+        .custom-btn-2 {
+            display: inline-block;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #000000;
+             background-color: #00F2E2; /* Puedes cambiar este color */
+            border: 1px solid #00F2E2;
+            border-radius: 5px;
+      
+        }
+
+        .custom-btn-2:hover {
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .container-2 {
+            background-color: #E0E0E0; /* Color de fondo blanco */
+            border: 1px solid #dddddd; /* Borde gris claro */
+            border-radius: 5px; /* Bordes redondeados */
+            margin: 20px; /* Márgenes externos para separar del borde de la ventana */
+            padding: 20px; /* Relleno interno para separar el contenido del borde */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
+            display: inline-block; /* Ajusta el contenedor al contenido */
+        }
+
+   
+        dt, dd {
+            font-size: 1em;
+            margin: 0;
+            padding: 0;
+        }
+
+        h4 {
+            font-size: 14px;
+        }
+
+        .banner-image {
+            background-image: url('@Url.Content("~/Img/crayons-1445053_1280.jpg")');
+            background-size: cover;
+            color: #000000;
+        }
+
+        a {
+            font-size: 13px;
+        }
+
+   
+        .col-sm-2 {
+            width: 30%;
+        }
+
+        .col-sm-10 {
+            width: 60%;
+        }
+
+        .row {
+            margin-bottom: 8px;
+        }
+
+
+        h4 {
+            font-size: 27px;
+            font-family: 'Poppins', sans-serif;
+            font-weight:900;
+            color: #1D438A;
+        }
+
+        dl.row dt {
+            font-size: 18px;
+            text-align: justify;
+            color: #000000;
+        }
+
+        dl.row dd {
+            font-size: 15px;
+            text-align: right;
+            color:#000000;
+        }
+    </style>
+</head>
+<body>
+    <img class="banner-image">
+     <div class="container-2">
+        <h4>Detalles Usuario</h4>
+        <hr />
+        <dl class="row">
+
+                <dt class="col-sm-2">
+                    Nombre     
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Nombre)
+                </dd>
+       
+                <dt class="col-sm-2">
+                    Rol
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Rol)
+                </dd>
+
+            
+                <dt class="col-sm-2">
+                    Dirección
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Direccion)
+                </dd>
+
+          
+                <dt class="col-sm-2">
+                    Correo Electrónico
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CorreoElectronico)
+                </dd>
+        </dl>
+    </div>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="custom-btn">Editar</a> |
+        <a asp-action="Index" class="custom-btn-2">Regresar</a>
+    </div>
+    </body>
+</html>

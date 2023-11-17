@@ -1,0 +1,128 @@
+﻿@model ProyectoAnalisis.Models.Usuario
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+    <style>
+        /* En tu archivo de estilos CSS */
+        .ancho-personalizado {
+            width: 300px;
+        }
+
+        .banner-image {
+            background-image: url('@Url.Content("~/Img/crayons-1445053_1280.jpg")');
+            background-size: cover;
+            color: #000000;
+        }
+
+        .custom-btn-2,
+        .custom-btn-delete {
+            display: inline-block;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            color: #000000;
+         
+            border-radius: 5px;
+        }
+
+        .custom-btn-2 {
+            background-color: #00F2E2;
+            border: 1px solid #00F2E2;
+        }
+
+        .custom-btn-delete {
+            background-color: #D92D07;
+            border: 1px solid #D92D07;
+        }
+
+        .custom-btn-2:hover,
+        .custom-btn-delete:hover {
+               color:#000000;
+               font-weight:bold;
+         }
+
+        h3 {
+           font-family: 'Lora', serif;
+            font-size: 1.1em;
+            color:#000000;
+            font-weight:bold;
+         }
+
+        h4 {
+            font-family: 'Poppins', serif;
+            font-size: 1.2em;
+            color: #000000;
+            font-weight: bold;
+        }
+
+        .row {
+            font-family: 'Lora', serif;
+        }
+
+        dl.row dt {
+            font-size: 18px; /* Tamaño de fuente para títulos */
+            text-align: justify;
+        }
+
+        dl.row dd {
+            font-size: 14px; /* Tamaño de fuente para información */
+        }
+
+        .container-2 {
+            background-color: #F0F2F1; /* Color de fondo blanco */
+            border: 1px solid #dddddd; /* Borde gris claro */
+            border-radius: 5px; /* Bordes redondeados */
+            margin: 20px; /* Márgenes externos para separar del borde de la ventana */
+            padding: 20px; /* Relleno interno para separar el contenido del borde */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
+            display: inline-block; /* Ajusta el contenedor al contenido */
+        }
+    </style>
+</head>
+<body>
+    <img class="banner-image">
+<h3>Estas seguro de borrar este usuario?</h3>
+<div class="container-2">
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Nombre
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class = "col-sm-2">
+             Rol
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Rol)
+        </dd>
+    
+        <dt class = "col-sm-2">
+           Dirección
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+        <dt class = "col-sm-2">
+            Correo
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CorreoElectronico)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+            <input type="submit" value="Eliminar" class="custom-btn-delete" /> |
+       <a asp-action="Index" class="custom-btn-2">Regresar</a>
+    </form>
+</div>
+</body>
+</html>

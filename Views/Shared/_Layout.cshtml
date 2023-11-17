@@ -1,0 +1,208 @@
+﻿@{
+    var user = Context.User;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ProyectoAnalisis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Lora:wght@700&family=Montserrat:wght@900&family=Poppins:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap">
+    
+     <style>
+      .banner-image {
+            background-image: url('@Url.Content("~/Img/Paisaje.jpg")');
+            background-size: cover;
+            opacity: 0.8;
+        }
+
+       
+        .navbar-dark .navbar-nav .nav-link {
+            color:black;
+            font-weight: bold;
+            background-color: transparent;
+        }
+
+        #navbar-brand {
+            color: black; /* Cambia el color del texto a negro */
+            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
+            font-size: 35px;
+            margin-left: 70px;
+            font-weight: 900;
+
+
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 20px; /* Cambia el tamaño del texto a 20px */
+            background-color: transparent;
+        }
+
+        .navbar {
+            margin-left: -145px !important;
+            background-color: transparent;
+        }
+
+    
+        .dropdown-item {
+            color: black;
+            font-weight: bold;
+        }
+
+        #dropdownMenuButton{
+            background-color: transparent;
+            border: none;
+            color:black;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+
+
+            #dropdownMenuButton:hover,
+            #dropdownMenuButton:active,
+            #dropdownMenuButton:focus{
+                background-color: #FE7800;
+                box-shadow: none;
+                border: none;
+                color:white;
+           
+            }
+
+
+            #dropdownMenuButton:not(:hover),
+            #dropdownMenuButton:not(:focus) {
+                background-color: transparent;
+                border: none;
+                color: black;
+            }
+
+
+        .dropdown-item:hover,
+        .dropdown-item:focus {
+            background-color: #FE7800;
+            border:none;
+            color:white;
+        }
+
+  
+
+        .btn-secondary {
+            background-color: transparent;
+            color: black;
+            font-weight: bold;
+            border:none;
+            font-size: 20px;
+        }
+
+
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background-color: #FE7800;
+        
+        }
+
+
+
+         
+
+    </style>
+</head>
+<body>
+    <!-- Navbar  -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
+        <div class="container">
+            
+            <span id="navbar-brand"> <img src="~/Img/fox (1).png" alt="Icono de zorro" style="width: 80px;">EnglishFox</span>
+
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="mx-auto"></div>
+                <ul class="navbar-nav  mi-lista">
+                    @if (user.IsInRole("Profesor")) // Verificar si el usuario tiene el rol "Profesor" si lo tiene muestra esta vista
+                    {
+                        <li class="nav-item dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Maestro
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: transparent;">
+                                <a class="dropdown-item" asp-area="" asp-controller="CrudUsuarios" asp-action="Index">Usuario</a>
+                                
+                            </div>
+                        </li>
+                    }
+
+                    <li class="nav-item dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Contenido
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: transparent;">
+                            <a class="dropdown-item" href="#">Consultar contenido  </a>
+                            <a class="dropdown-item" href="#">Gramática presente simple</a>
+                            <a class="dropdown-item" href="#">Vocabulario </a>
+
+                        </div>
+                    </li>
+
+                        <li class="nav-item dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Evaluativo
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: transparent;">
+                            <a class="dropdown-item" href="#">Historial de notas    </a>
+                            <a class="dropdown-item" href="#">Juegos</a>
+                            <a class="dropdown-item" href="#">Repasos </a>
+                            <a class="dropdown-item" href="#">Resultados </a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <form method="post" asp-area="" asp-controller="Home" asp-action="CerrarSesion">
+                            <button class="btn btn-secondary" type="submit"  aria-haspopup="true" aria-expanded="false">
+                                Cerrar Sesión
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Banner Image  -->
+    <div class="banner-image w-100 vh-100 d-flex justify-content-center align-items-center">
+        <div class="content text-center">
+            <h1 class="text-dark">  @RenderBody()</h1>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+

@@ -1,0 +1,157 @@
+﻿@model ProyectoAnalisis.Models.Usuario
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <style>
+
+        form {
+            margin-bottom: 50px; /* Ajusta el valor según tus necesidades */
+        }
+
+
+    
+        .ancho-personalizado {
+            width: 300px;
+            background-color: #F0F2F1;
+        }
+
+        .banner-image {
+            background-image: url('@Url.Content("~/Img/crayons-1445053_1280.jpg")');
+            background-size: cover;
+            color: #000000;
+        }
+
+        .custom-btn-2 {
+            display: inline-block;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            color: #000000;
+            background-color: #00F2E2; /* Puedes cambiar este color */
+            border: 1px solid #00F2E2;
+            border-radius: 5px;
+            font-size: 14px;
+            float: right;
+        }
+
+            .custom-btn-2:hover {
+                color: #000000;
+                font-weight: bold;
+            }
+
+        .custom-btn-save {
+            background-color: #FFE826;
+            color: #000000;
+            border: 1px solid #FFE826;
+            border-radius: 5px;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px; /* Puedes ajustar el tamaño de la fuente según tus preferencias */
+            text-align: left;
+            margin-left: -130px;
+        }
+
+            .custom-btn-save:hover {
+                color: #000000;
+                font-weight:bold;
+            }
+
+        .form-group {
+            margin-bottom: 20px; /* Puedes ajustar el valor según tus necesidades */
+        }
+
+        .col-md-4 {
+            font-size: 14px; /* Puedes ajustar el tamaño de la fuente según tus necesidades */
+        }
+
+ 
+
+        h4 {
+            font-size: 25px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            color: #1D438A;
+            margin-bottom: 20px;
+        }
+        /* Agrega un margen inferior al elemento .form-group */
+        .form-group {
+            margin-bottom: 12px;
+
+
+        }
+        .row{
+            margin-top: 30px;
+        }
+
+        .button-container {
+            display: inline-block;
+            width: 300px;
+        }
+
+        .control-label {
+            text-align: left;
+            width: 300px;
+            display: inline-block;
+            color:#000000;
+            font-weight:bold;
+        }
+
+    </style>
+</head>
+
+<body>
+    <img class="banner-image">
+
+
+
+<div class="row">
+        <h4>Usuario</h4>
+        <hr />
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                    <label class="control-label">Nombre</label>
+                <input asp-for="Nombre" class="form-control ancho-personalizado" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+                <div class="form-group">
+                    <label class="control-label">Rol</label>
+                    <select asp-for="Rol" class="form-control ancho-personalizado">
+                        <option value="Estudiante">Estudiante</option>
+                        <option value="Profesor">Profesor</option>
+                    </select>
+                    <span asp-validation-for="Rol" class="text-danger"></span>
+                </div>
+
+           
+            <div class="form-group">
+                    <label class="control-label">Dirección</label>
+                <input asp-for="Direccion" class="form-control ancho-personalizado" />
+                <span asp-validation-for="Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                    <label class="control-label">Correo</label>
+                <input asp-for="CorreoElectronico" class="form-control ancho-personalizado" />
+                <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+            </div>
+                <div class="button-container">
+                    <input type="submit" value="Guardar" class="custom-btn-save" />
+                    <a asp-action="Index" class="custom-btn-2">Regresar</a>
+                </div>
+
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>
