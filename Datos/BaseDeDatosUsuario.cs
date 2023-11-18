@@ -11,5 +11,7 @@ namespace ProyectoAnalisis.Datos
 
         public DbSet<Usuario> Usuario { get; set; }
 
+        public DbSet<ProyectoAnalisis.Models.Notas>? Notas { get; set; }
+
     }
 }

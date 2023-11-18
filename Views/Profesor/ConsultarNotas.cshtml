@@ -1,0 +1,100 @@
+﻿@model List<ProyectoAnalisis.Models.Notas>
+
+@{
+    ViewData["Title"] = "Consultar Notas";
+ 
+}
+<link href="https://fonts.googleapis.com/css2?family=Acme&family=Lora:wght@700&family=Montserrat:wght@900&family=Poppins:wght@900&display=swap" rel="stylesheet">
+<style>
+    /* En tu archivo de estilos CSS */
+
+    body {
+        font-size: 18px;
+        color: #000000; /* Cambia el color del texto para que sea legible sobre el fondo */
+    }
+
+    .banner-image {
+        background-image: url('@Url.Content("~/Img/crayons-1445053_1280.jpg")');
+        background-size: cover;
+        color: #000000;
+    }
+
+    h4 {
+        font-family: 'Poppins', sans-serif; /* Aplica la fuente Poppins al elemento h4 */
+        font-size:40px;
+        margin-bottom: 10px;
+        font-weight:800;
+        color: #821b04;
+    }
+
+
+    table {
+        width: 100%; /* Establece el ancho de la tabla al 100% */
+        margin-top: 9px; /* Ajusta el espacio sobre la tabla */
+        margin-bottom: 120px; /* Ajusta el espacio bajo la tabla */
+        border-collapse: collapse;
+     
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px; /* Aumenta el padding de las celdas para aumentar su tamaño */
+        text-align: left;
+        font-size: 18px;
+    }
+
+    td {
+        background-color: #F0F2F1; /* Agrega este color de fondo para las celdas */
+        font-size: 20px;
+    }
+
+
+    th {
+        background-color: #F2D230;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .no-data {
+        text-align: center;
+        font-style: italic;
+        color: #999;
+    }
+
+</style>
+<img class="banner-image">
+<h4>Notas</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Correo</th>
+            <th>Nota</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count > 0)
+        {
+            foreach (var nota in Model)
+            {
+                <tr>
+                    <td>@nota.Usuario.Nombre</td>
+                    <td>@nota.Usuario.CorreoElectronico</td>
+                    <td>@nota.ContenidoNota</td>
+                 
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="2" class="no-data">No hay notas disponibles</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
