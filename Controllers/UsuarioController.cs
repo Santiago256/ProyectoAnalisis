@@ -36,7 +36,7 @@ namespace ProyectoAnalisis.Controllers
             };
            await  bd.Usuario.AddAsync(nuevoUsuario);
             await bd.SaveChangesAsync();
-            return RedirectToAction("ConsultarNOta");
+            return RedirectToAction("ConsultarNota");
         }
 
     }
