@@ -26,6 +26,22 @@ namespace ProyectoAnalisis.Controllers
 
             return View("~/Views/Inicio/Contenido.cshtml");
         }
+
+
+        public IActionResult Vocabulario()
+        {
+            var palabras = new List<(string Palabra, string Imagen)>
+        {
+            
+            ("dog", "dog.jpg"),
+            // ... otras palabras
+        };
+
+            ViewBag.Palabras = palabras;
+            return View("~/Views/Inicio/Vocabulariocshtml.cshtml");
+        }
+
+
         public IActionResult Index()
         {
             ClaimsPrincipal claimuser = HttpContext.User;

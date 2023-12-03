@@ -1,0 +1,22 @@
+﻿
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>Lista de Palabras en Inglés para Niños</h1>
+
+    <ul>
+        @foreach (var palabra in ViewBag.Palabras)
+        {
+            <li>
+                <img src="~/Img/@palabra.Item2" alt="@palabra.Item1" style="max-width: 50px; max-height: 50px;">
+                @palabra.Item1
+            </li>
+        }
+    </ul>
+
+</body>
+</html>
