@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Gramatica";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+        .banner-image {
+            background-image: url('@Url.Content("~/Img/concepto-realista-colorido-arco-iris_52683-35882.jpg")');
+            background-size: cover;
+            opacity: 0.8;
+        }
+
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-attachment: fixed;
+        }
+
+        h1 {
+            color: #000000;
+            font-family: 'Poppins', serif;
+            font-weight: 900;
+            font-size: 40px;
+            margin-top: 200px;
+            text-align: center;
+
+        }
+
+        .video-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        iframe {
+            width: 70%;
+            height: 400px;
+        }
+
+        .dropdown-item:hover,
+        .dropdown-item:focus {
+            background-color: #5287F2;
+            border: none;
+            color: white;
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background-color: #5287F2;
+        }
+
+        #dropdownMenuButton:hover,
+        #dropdownMenuButton:active,
+        #dropdownMenuButton:focus {
+            background-color: #5287F2;
+            color: white;
+        }
+
+        .navbar {
+            background-color: #87ECFE;
+            margin-left: -145px !important;
+            height: 70px;
+        }
+
+    </style>
+</head>
+
+<body>
+ 
+    <h1>¿Quieres aprender más sobre la gramática del presente simple?</h1>
+
+    <div class="video-container">
+        <!-- Inserta aquí el código del video -->
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/wtTAdfyejH0" frameborder="0" allowfullscreen></iframe>
+    </div>
+</body>
+</html>

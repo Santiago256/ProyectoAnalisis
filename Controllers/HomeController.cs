@@ -28,18 +28,32 @@ namespace ProyectoAnalisis.Controllers
         }
 
 
+        public IActionResult Gramatica()
+        {
+
+            return View("~/Views/Inicio/Gramatica.cshtml");
+        }
+
+
         public IActionResult Vocabulario()
         {
             var palabras = new List<(string Palabra, string Imagen)>
-        {
-            
-            ("dog", "dog.jpg"),
-            // ... otras palabras
-        };
+    {
+        ("cook", "cook.jpg"),
+        ("eat", "eat.jpg"),
+        ("love", "love.jpg"),
+        ("pull", "pull.jpg"),
+        ("sing", "sing.jpg"),
+        ("think", "think.jpg"),
+        ("throw", "throw.jpg"),
+        ("wash", "wash.jpg"),
+        ("write", "write.jpg")
+    };
 
             ViewBag.Palabras = palabras;
             return View("~/Views/Inicio/Vocabulariocshtml.cshtml");
         }
+
 
 
         public IActionResult Index()

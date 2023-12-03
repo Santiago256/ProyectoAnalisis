@@ -1,22 +1,112 @@
-﻿
+﻿@{
+    ViewData["Title"] = "Vocabulario";
+}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <h1>Lista de Palabras en Inglés para Niños</h1>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+       
+            background-image: url('@Url.Content("~/Img/vocabulary.jpg")');
+            background-size: cover;
+            background-attachment: fixed; /* Fija el fondo al hacer scroll */
+        }
 
-    <ul>
+        h1 {
+            color:#000000;
+            margin-top: 1800px;
+            font-size:100px;
+            font-weight: 900;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+        }
+
+
+        .banner-image {
+            background-image: none;
+        }
+     
+
+        .navbar {
+            background-color: #0378A6;
+            margin-left: -145px !important;
+            height: 70px;
+        }
+
+        #dropdownMenuButton:hover,
+        #dropdownMenuButton:active,
+        #dropdownMenuButton:focus {
+            background-color: #03C1A6;
+            color: white;
+        }
+
+        .dropdown-item:hover,
+        .dropdown-item:focus {
+            background-color: #03C1A6;
+            border: none;
+            color: white;
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background-color: #03C1A6;
+        }
+
+        /* Estilo para la lista */
+        .verb-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 130px;
+        }
+
+        /* Estilo para cada elemento de la lista */
+        .verb-item {
+            flex: 0 0 45%;
+            margin: 10px;
+            text-align: center;
+            padding: 20px; /* Ajusta el padding según tus necesidades */
+           
+        }
+
+        /* Estilo específico para las imágenes */
+        .verb-image img {
+            width: 50%;
+            height: auto;
+            max-width: none;
+            margin-top: -40px;
+            margin-bottom: 20px;
+            opacity: 1;
+        }
+
+        .verb-item p {
+            font-weight: bold; /* Hace que el texto sea negrita */
+            font-size: 30px; /* Ajusta el tamaño del texto según tus necesidades */
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Basic Verbs</h1>
+    <ul class="verb-list">
+
         @foreach (var palabra in ViewBag.Palabras)
         {
-            <li>
-                <img src="~/Img/@palabra.Item2" alt="@palabra.Item1" style="max-width: 50px; max-height: 50px;">
-                @palabra.Item1
+            <li class="verb-item">
+                <div class="verb-image">
+                    <img src="~/Img/@palabra.Item2" alt="@palabra.Item1">
+                    <p>@palabra.Item1</p>
+                </div>
             </li>
         }
     </ul>
-
 </body>
 </html>
