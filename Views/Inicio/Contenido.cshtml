@@ -112,6 +112,85 @@
         color: #000000;
     }
 
+    .a {
+        position: relative;
+        display: inline-block;
+        padding: 15px 30px;
+        color: #000000;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        text-decoration: none;
+        font-size: 24px;
+        overflow: hidden;
+        transition: 0.1s;
+    }
+
+        .a:hover {
+            color: #000000;
+            background: #03e9f4;
+            box-shadow: 0 0 10px #03e9f4, 0 0 40px #03e9f4, 0 0 80px #03e9f4;
+            transition-delay: 0.5s;
+        }
+
+        .a .span {
+            position: absolute;
+            display: block;
+        }
+
+            .a .span:nth-child(1) {
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(90deg, transparent, #03e9f4);
+            }
+
+        .a:hover .span:nth-child(1) {
+            left: 100%;
+            transition: 0.5s;
+        }
+
+        .a .span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(270deg, transparent, #03e9f4);
+        }
+
+        .a:hover .span:nth-child(3) {
+            right: 100%;
+            transition: 0.5s;
+            transition-delay: 0.5s;
+        }
+
+        .a .span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #03e9f4);
+        }
+
+        .a:hover .span:nth-child(2) {
+            top: 100%;
+            transition: 1s;
+            transition-delay: 0.20s;
+        }
+
+        .a .span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(360deg, transparent, #03e9f4);
+        }
+
+        .a:hover .span:nth-child(4) {
+            bottom: 100%;
+            transition: 1s;
+            transition-delay: 0.60s;
+        }
 
 </style>
 <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
@@ -123,23 +202,31 @@
                 <p>El presente simple Para expresar 
                     hábitos y rutinas, hechos generales, 
                     acciones repetidas o situaciones, emociones y deseos permanentes.</p>
+                <a class="a" href="https://www.britishcouncil.co/blog/aprende-ingles/present-simple" target="_blank">
+                    <span class="span"></span>
+                    <span class="span"></span>
+                    <span class="span"></span>
+                    <span class="span"></span>
+                    Ver más
+                </a>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="/Img/Knights duel with swords at ancient city.jpg" class="d-block mx-auto" alt="Pasado Simple">
+            <img src="/Img/567deab744d2cfb6e1bad45833dfda95 (2).jpg" class="d-block mx-auto" alt="Futuro Simple">
             <div class="carousel-caption d-none d-md-block">
-                <h5>Simple Past</h5>
-                <p>El pasado simple o past simple del inglés es un tiempo verbal que expresa situaciones o acciones que se dieron en el pasado, y aunque pueden ser del pasado reciente o del pasado lejano, su duración no es importante; solo se debe entender que estas ya finalizaron.</p>
-            </div>
+                <h5>Verb TO BE</h5>
+                <p>Así como en cualquier lengua, 
+                    el verbo to be es uno de los principales del inglés. 
+                  Te lo puedes encontrar en casi cualquier texto y lo puedes escuchar en cualquier momento en cualquiera de sus conjugaciones y significados</p>
+                <a class="a" href="https://www.abaenglish.com/es/verbos-ingles/to-be/" target="_blank">
+                    <span class="span"></span>
+                    <span class="span"></span>
+                    <span class="span"></span>
+                    <span class="span"></span>
+                    Ver más
+                </a>
+                </div>
         </div>
-        <div class="carousel-item">
-            <img src="/Img/future-city-street-with-futuristic-glass-buildings-unusual-shapes_107791-3028 (1).jpg" class="d-block mx-auto" alt="Futuro Simple">
-            <div class="carousel-caption d-none d-md-block">
-                <h5>Simple Future</h5>
-                <p>¿Quieres hablar sobre tus próximas vacaciones?, ¿o tal vez de dónde quieres trabajar en unos años?, ¿de lo que te quieres comprar en tu cumpleaños? Para todo eso y más sirve el futuro simple en inglés a través de will."</p>
-            </div>
-        </div>
-
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
