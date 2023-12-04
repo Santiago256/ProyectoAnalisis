@@ -27,6 +27,11 @@ namespace ProyectoAnalisis.Controllers
             return View("~/Views/Inicio/Contenido.cshtml");
         }
 
+        public IActionResult Repasos()
+        {
+
+            return View("~/Views/Inicio/Repasos.cshtml");
+        }
 
         public IActionResult Gramatica()
         {
