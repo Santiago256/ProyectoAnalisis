@@ -20,6 +20,8 @@ namespace ProyectoAnalisis.Controllers
             _context = context;
         }
 
+
+
         // GET: CrudUsuarios
         public async Task<IActionResult> Index()
         {

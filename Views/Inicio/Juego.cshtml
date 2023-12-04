@@ -1,5 +1,154 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Juego";
 }
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <style>
+        /* Agrega estilos según sea necesario */
+        h2 {
+            color: #00661a; /* Cambia el color a tu elección */
+            font-weight: 900;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            margin-bottom: 80px;
+            font-size:40px;
+           /* Subraya el texto si lo deseas */
+        }
+
+        .banner-image {
+            background-image: url('@Url.Content("~/Img/juego.jpg")');
+            background-size: cover;
+        
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background-color: #64BB5A;
+        }
+
+        #dropdownMenuButton:hover,
+        #dropdownMenuButton:active,
+        #dropdownMenuButton:focus {
+            background-color: #64BB5A;
+            color: white;
+        }
+
+
+
+        .dropdown-item:hover,
+        .dropdown-item:focus {
+            background-color: #64BB5A;
+            border: none;
+            color: white;
+        }
+
+        .navbar {
+            margin-left: -145px !important;
+            background-color: #CBE8CA;
+            height: 70px;
+        }
+
+        .a {
+            position: relative;
+            display: inline-block;
+            padding: 15px 30px;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-decoration: none;
+            font-size: 24px;
+            overflow: hidden;
+            transition: 0.1s;
+            font-family: 'Poppins', sans-serif;
+            font-weight: bold;
+        }
+
+            .a:hover {
+                color: #000000;
+                background: #48ff55;
+                box-shadow: 0 0 10px #48ff55, 0 0 40px #48ff55, 0 0 80px #48ff55;
+                transition-delay: 0.5s;
+            }
+
+            .a .span {
+                position: absolute;
+                display: block;
+            }
+
+                .a .span:nth-child(1) {
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 2px;
+                    background: linear-gradient(90deg, transparent, #48ff55);
+                }
+
+            .a:hover .span:nth-child(1) {
+                left: 100%;
+                transition: 0.5s;
+            }
+
+            .a .span:nth-child(3) {
+                bottom: 0;
+                right: -100%;
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(270deg, transparent, #48ff55);
+            }
+
+            .a:hover .span:nth-child(3) {
+                right: 100%;
+                transition: 0.5s;
+                transition-delay: 0.5s;
+            }
+
+            .a .span:nth-child(2) {
+                top: -100%;
+                right: 0;
+                width: 2px;
+                height: 100%;
+                background: linear-gradient(180deg, transparent, #48ff55);
+            }
+
+            .a:hover .span:nth-child(2) {
+                top: 100%;
+                transition: 1s;
+                transition-delay: 0.28s;
+            }
+
+            .a .span:nth-child(4) {
+                bottom: -100%;
+                left: 0;
+                width: 2px;
+                height: 100%;
+                background: linear-gradient(360deg, transparent, #48ff55);
+            }
+
+            .a:hover .span:nth-child(4) {
+                bottom: 100%;
+                transition: 1s;
+                transition-delay: 0.60s;
+            }
+
+
+    </style>
+</head>
+<body>
+    <h2>Aprender Inglés Puede Ser Divertido!</h2>
+
+    <a class="a"  href="@Url.Action("Index", "Juego")">
+        <span class="span"></span>
+        <span class="span"></span>
+        <span class="span"></span>
+        <span class="span"></span>
+        Jugar
+    </a>
+
+</body>
+</html>

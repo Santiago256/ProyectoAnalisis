@@ -1,0 +1,18 @@
+﻿@model List<int>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mostrar Puntuaciones</title>
+</head>
+<body>
+    <h2>Lista de Puntuaciones</h2>
+
+    <ul>
+        @foreach (var puntuacion in Model)
+        {
+            <li>@puntuacion</li>
+        }
+    </ul>
+</body>
+</html>

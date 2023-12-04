@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Resultado Juego";
+    var respuestasCorrectas = ViewData["RespuestasCorrectas"] as List<string>;
+    var respuestasUsuario = ViewData["RespuestasUsuario"] as List<string>;
+    var oraciones = ViewData["Oraciones"] as List<string>;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Agrega tus etiquetas meta, estilos, etc. según sea necesario -->
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <h2>Resultado del Juego</h2>
+    <div>
+        <h3>Respuestas Correctas e Incorrectas:</h3>
+        <ul>
+            @if (respuestasCorrectas != null && respuestasUsuario != null && oraciones != null)
+            {
+                if (respuestasCorrectas.Count == respuestasUsuario.Count && respuestasUsuario.Count == oraciones.Count)
+                {
+                    for (int i = 0; i < respuestasCorrectas.Count; i++)
+                    {
+                        <li>
+                            @((respuestasUsuario[i] == respuestasCorrectas[i]) ? $"{respuestasUsuario[i]} OK" : $"{respuestasUsuario[i]} X (Correcta: {respuestasCorrectas[i]})")
+                        </li>
+                    }
+                }
+                else
+                {
+                    <p>Las listas de respuestas no tienen la misma longitud.</p>
+                }
+            }
+            else
+            {
+                <p>No se han recibido datos para mostrar.</p>
+            }
+        </ul>
+
+        <p>Puntuación: @ViewData["Puntuacion"]</p>
+    </div>
+</body>
+</html>

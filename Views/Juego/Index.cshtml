@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Present Simple Game</title>
+    <style>
+        /* Tu estilo aquí... */
+        .banner-image {
+            background-image: url('@Url.Content("~/Img/JuegoInicio.jpg")');
+            background-size: cover;
+        }
+
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            background-color: #50E2F2;
+        }
+
+        #dropdownMenuButton:hover,
+        #dropdownMenuButton:active,
+        #dropdownMenuButton:focus {
+            background-color: #50E2F2;
+            color: white;
+        }
+
+        .dropdown-item:hover,
+        .dropdown-item:focus {
+            background-color: #50E2F2;
+            border: none;
+            color: white;
+        }
+
+        .navbar {
+            margin-left: -145px !important;
+            background-color: #1988BF;
+            height: 70px;
+        }
+
+        h2 {
+            color: #ffffff;
+            font-weight: 900;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            margin-bottom: 140px;
+            font-size: 40px;
+        }
+
+        #game-container {
+            margin: 50px auto;
+            text-align: center;
+            color: #000000;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        #user-input {
+            background-color: transparent; /* Hace el fondo transparente */
+            border: 1px solid black; /* Agrega un borde negro de 1 píxel */
+            color: white; /* Cambia el color del texto a blanco */
+            padding: 5px; /* Añade un relleno para mejorar la apariencia */
+        }
+
+        #submit-button {
+            background-color: #003fff; /* Color de fondo */
+            color: white; /* Color del texto */
+            padding: 10px 20px; /* Relleno vertical y horizontal */
+            font-size: 16px; /* Tamaño del texto */
+            cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+            border: none; /* Quita el borde */
+            border-radius: 4px; /* Bordes redondeados */
+        }
+
+            #submit-button:hover {
+                background-color: #4000ff; /* Cambia el color al pasar sobre el botón */
+            }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <h2>Present Simple Game</h2>
+        <p id="sentence"></p>
+        <input type="text" id="user-input" placeholder="Enter the correct verb">
+        <button id="submit-button" onclick="checkAnswer()">Submit</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        var pronouns = ["I", "You", "He/She/It", "We", "They"];
+        var words = {
+            "I": ["am", "play", "read", "eat"],
+            "You": ["are", "study", "write", "drink"],
+            "He/She/It": ["is", "run", "sleep", "sing"],
+            "We": ["are", "dance", "talk", "listen"],
+            "They": ["are", "swim", "work", "play"],
+        };
+
+        var additionalSentences = [
+            { sentence: "I sometimes ____________ (go) to work by car.", correctAnswer: "go" },
+            { sentence: "She rarely ____________ (eat) fast food.", correctAnswer: "eats" },
+            { sentence: "Ben __________ (work) in a hospital.", correctAnswer: "works" },
+            { sentence: "Matthew never ___________ (watch) television.", correctAnswer: " watches" },
+            // Agrega más oraciones según sea necesario
+        ];
+
+        var sentenceOrder = []; // Orden de las oraciones
+        var currentRound = 1;
+        var maxRounds = 8; // Ajustado al número de oraciones disponibles
+        var score = 0; // Variable para la puntuación
+
+        function startGame() {
+            if (currentRound <= maxRounds) {
+                var sentence;
+
+                if (sentenceOrder.length === 0) {
+                    // Si no hay orden de oraciones, crea una nueva
+                    sentenceOrder = generateSentenceOrder();
+                }
+
+                var sentenceIndex = sentenceOrder.pop(); // Obtén la siguiente oración del orden
+
+                if (sentenceIndex < pronouns.length) {
+                    // Oración de pronombres
+                    var pronoun = pronouns[sentenceIndex];
+                    var verbOptions = words[pronoun];
+                    var correctVerb = verbOptions[Math.floor(Math.random() * verbOptions.length)];
+                    sentence = pronoun + " ____________. Round " + currentRound + " of " + maxRounds;
+                    sessionStorage.setItem("correctVerb", correctVerb);
+                } else {
+                    // Oración adicional
+                    var additionalSentence = additionalSentences[sentenceIndex - pronouns.length];
+                    sentence = additionalSentence.sentence.replace(/__________/, "__________") + " Round " + currentRound + " of " + maxRounds;
+                    sessionStorage.setItem("correctVerb", additionalSentence.correctAnswer);
+                }
+
+                document.getElementById("sentence").innerText = sentence;
+                document.getElementById("user-input").value = "";
+                document.getElementById("result").innerText = "";
+            } else {
+                // Juego completado, muestra un cuadro de diálogo
+                var playAgain = confirm("Game Over. Do you want to play again?");
+                if (playAgain) {
+            
+                    reiniciarJuego();
+                } else {
+
+                    // Juego terminado, guarda la puntuación
+                    guardarPuntuacion(score);
+                    document.getElementById("sentence").innerText = "Game Over";
+                    document.getElementById("user-input").style.display = "none";
+                    document.getElementById("result").innerText = "Final Score: " + score;
+                }
+            }
+        }
+
+        function generateSentenceOrder() {
+            // Genera un orden que mezcla las oraciones de pronombres y adicionales
+            var pronounOrder = Array.from({ length: pronouns.length }, (_, index) => index);
+            var additionalOrder = Array.from({ length: additionalSentences.length }, (_, index) => index + pronouns.length);
+
+            var combinedOrder = pronounOrder.concat(additionalOrder);
+            combinedOrder.sort(() => Math.random() - 0.5);
+
+            return combinedOrder;
+        }
+
+        function checkAnswer() {
+            var userAnswer = document.getElementById("user-input").value.toLowerCase();
+            var correctVerb = sessionStorage.getItem("correctVerb").toLowerCase();
+
+            if (userAnswer === correctVerb) {
+                document.getElementById("result").innerText = "Correct! Well done.";
+                score++; // Incrementa la puntuación solo si la respuesta es correcta
+            } else {
+                document.getElementById("result").innerText = "Incorrect. Keep practicing!";
+            }
+
+            currentRound++;
+            startGame(); // Inicia la próxima ronda
+        }
+
+        // Iniciar el juego al cargar la página
+        startGame();
+        function reiniciarJuego() {
+            fetch('/Juego/BorrarRegistroAnterior', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al borrar el registro anterior');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Registro anterior borrado:', data.mensaje);
+                    // Después de borrar el registro anterior, inicia una nueva ronda
+                    currentRound = 1;
+                    score = 0;
+                    sentenceOrder = [];
+                    setTimeout(startGame, 0);
+                })
+                .catch(error => {
+                    console.error('Error al borrar el registro anterior:', error);
+                    // Si hay un error al borrar el registro anterior, aún así intenta iniciar el juego
+                    currentRound = 1;
+                    score = 0;
+                    sentenceOrder = [];
+                    startGame();
+                });
+        }
+
+        function guardarPuntuacion(score) {
+            fetch('/Juego/GuardarPuntuacion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    puntuacion: score,
+                }),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al guardar la puntuación en el servidor');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Puntuación guardada en la base de datos:', data.mensaje);
+                })
+                .catch(error => {
+                    console.error('Error al guardar la puntuación:', error);
+                });
+        }
+        // Resto del código...
+
+    </script>
+</body>
+</html>

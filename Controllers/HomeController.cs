@@ -34,6 +34,13 @@ namespace ProyectoAnalisis.Controllers
             return View("~/Views/Inicio/Gramatica.cshtml");
         }
 
+        public IActionResult Juego()
+        {
+
+            return View("~/Views/Inicio/Juego.cshtml");
+        }
+
+
 
         public IActionResult Vocabulario()
         {

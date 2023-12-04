@@ -58,7 +58,8 @@ namespace ProyectoAnalisis.Controllers
 
             List<Claim> claims = new List<Claim>() {
                 new Claim(ClaimTypes.Name, usuario_encontrado.Nombre),
-            new Claim(ClaimTypes.Role, usuario_encontrado.Rol.ToString())
+            new Claim(ClaimTypes.Role, usuario_encontrado.Rol.ToString()),
+              new Claim(ClaimTypes.NameIdentifier, usuario_encontrado.Id.ToString()) // Agregar el Id del usuario
             };
 
         

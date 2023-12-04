@@ -35,6 +35,11 @@ builder.Services.AddControllersWithViews(options => {
         );
 });
 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(20); // Puedes ajustar el tiempo de expiración según tus necesidades
+});
+
 
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
@@ -51,11 +56,13 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthentication(); 
 
 app.UseAuthorization();
+
 
 
 //Define la página con la que comienza el proyecto 
