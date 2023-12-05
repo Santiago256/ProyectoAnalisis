@@ -107,7 +107,7 @@
         var currentRound = 1;
         var maxRounds = 8; // Ajustado al número de oraciones disponibles
         var score = 0; // Variable para la puntuación
-
+  
         function startGame() {
             if (currentRound <= maxRounds) {
                 var sentence;
@@ -125,12 +125,12 @@
                     var verbOptions = words[pronoun];
                     var correctVerb = verbOptions[Math.floor(Math.random() * verbOptions.length)];
                     sentence = pronoun + " ____________. Round " + currentRound + " of " + maxRounds;
-                    sessionStorage.setItem("correctVerb", correctVerb);
+                    localStorage.setItem("correctVerb", correctVerb);
                 } else {
                     // Oración adicional
                     var additionalSentence = additionalSentences[sentenceIndex - pronouns.length];
                     sentence = additionalSentence.sentence.replace(/__________/, "__________") + " Round " + currentRound + " of " + maxRounds;
-                    sessionStorage.setItem("correctVerb", additionalSentence.correctAnswer);
+                    localStorage.setItem("correctVerb", additionalSentence.correctAnswer);
                 }
 
                 document.getElementById("sentence").innerText = sentence;
@@ -166,11 +166,14 @@
 
         function checkAnswer() {
             var userAnswer = document.getElementById("user-input").value.toLowerCase();
-            var correctVerb = sessionStorage.getItem("correctVerb").toLowerCase();
+            var correctVerb = localStorage.getItem("correctVerb").toLowerCase(); // Cambio aquí
 
             if (userAnswer === correctVerb) {
+
                 document.getElementById("result").innerText = "Correct! Well done.";
                 score++; // Incrementa la puntuación solo si la respuesta es correcta
+                console.log('Puntuación actualizada:', score);
+                guardarPuntuacion();
             } else {
                 document.getElementById("result").innerText = "Incorrect. Keep practicing!";
             }
@@ -179,10 +182,13 @@
             startGame(); // Inicia la próxima ronda
         }
 
+
         // Iniciar el juego al cargar la página
         startGame();
         function reiniciarJuego() {
-            fetch('/Juego/BorrarRegistroAnterior', {
+            localStorage.removeItem("correctVerb");
+            score = 0;
+            var borrarRegistroAnterior = fetch('/Juego/BorrarRegistroAnterior', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -196,23 +202,35 @@
                 })
                 .then(data => {
                     console.log('Registro anterior borrado:', data.mensaje);
-                    // Después de borrar el registro anterior, inicia una nueva ronda
-                    currentRound = 1;
-                    score = 0;
-                    sentenceOrder = [];
-                    setTimeout(startGame, 0);
+                    localStorage.removeItem("correctVerb"); // Restablecer correctVerb
                 })
                 .catch(error => {
                     console.error('Error al borrar el registro anterior:', error);
+                    throw error; // Re-lanzar el error para que sea capturado en la siguiente etapa
+                });
+
+            borrarRegistroAnterior
+                .then(() => {
+                    // Después de borrar el registro anterior, inicia una nueva ronda
+                    currentRound = 1;
+                    sentenceOrder = [];
+                    startGame();
+                })
+                .catch(error => {
                     // Si hay un error al borrar el registro anterior, aún así intenta iniciar el juego
                     currentRound = 1;
                     score = 0;
                     sentenceOrder = [];
                     startGame();
+                    sessionStorage.removeItem("correctVerb");
                 });
         }
 
+
         function guardarPuntuacion(score) {
+            var powershellCommand = "Write-Host 'Puntuación a enviar: " + score + "'";
+            console.log('Puntuación a enviar:', score);
+
             fetch('/Juego/GuardarPuntuacion', {
                 method: 'POST',
                 headers: {
@@ -230,12 +248,26 @@
                 })
                 .then(data => {
                     console.log('Puntuación guardada en la base de datos:', data.mensaje);
+                    powershellCommand = "Write-Host 'Puntuación guardada en la base de datos: " + data.mensaje + "'";
                 })
                 .catch(error => {
                     console.error('Error al guardar la puntuación:', error);
+                    powershellCommand = "Write-Host 'Error al guardar la puntuación: " + error.message + "'";
+                })
+                .finally(() => {
+                    // Ejecutar el comando en la consola de PowerShell
+                    fetch('/Juego/EjecutarComandoPowerShell', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            comando: powershellCommand,
+                        }),
+                    });
                 });
         }
-        // Resto del código...
+
 
     </script>
 </body>

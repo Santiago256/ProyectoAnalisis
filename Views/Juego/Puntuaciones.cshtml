@@ -1,0 +1,24 @@
+﻿@model List<ProyectoAnalisis.Models.Notas>
+
+<h2>Historial de Puntuaciones</h2>
+
+@if (!string.IsNullOrEmpty(ViewData["ErrorMessage"] as string))
+{
+    <p style="color: red;">@ViewData["ErrorMessage"]</p>
+}
+else
+{
+    @if (Model != null && Model.Any())
+    {
+        <ul>
+            @foreach (var nota in Model)
+            {
+                <li>@nota.ContenidoNota</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No hay puntuaciones disponibles.</p>
+    }
+}

@@ -5,9 +5,11 @@ using ProyectoAnalisis.Datos;
 using System.Collections.Generic;
 using System.Security.Claims;
 using ProyectoAnalisis.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProyectoAnalisis.Controllers
 {
+    [Authorize]
     public class JuegoController : Controller
     {
         private static List<int> puntuaciones = new List<int>(); // Lista para almacenar las puntuaciones
@@ -36,20 +38,32 @@ namespace ProyectoAnalisis.Controllers
         {
             try
             {
-                // Obtén el Id del usuario actual, este es solo un ejemplo, 
-                // deberías tener alguna forma de obtener la información del usuario actual
+                // Obtén el Id del usuario actual
                 int usuarioId = ObtenerUsuarioActualId();
 
-                // Crea una nueva instancia de la clase Nota para almacenar la puntuación
-                Notas nuevaNota = new Notas
-                {
-                    UsuarioId = usuarioId,
-                    ContenidoNota = puntuacion
-                };
-                // Agrega la nueva nota a la base de datos
-                _context.Notas.Add(nuevaNota);
-                _context.SaveChanges();
+                // Busca la nota existente para el usuario
+                var notaExistente = _context.Notas.FirstOrDefault(n => n.UsuarioId == usuarioId);
 
+                if (notaExistente != null)
+                {
+                    // Si ya existe una nota, actualiza la puntuación
+                    notaExistente.ContenidoNota = puntuacion;
+                }
+                else
+                {
+                    // Si no existe una nota, crea una nueva
+                    Notas nuevaNota = new Notas
+                    {
+                        UsuarioId = usuarioId,
+                        ContenidoNota = puntuacion
+                    };
+
+                    // Agrega la nueva nota a la base de datos
+                    _context.Notas.Add(nuevaNota);
+                }
+
+                // Guarda los cambios en la base de datos
+                _context.SaveChanges();
 
                 Console.WriteLine($"Puntuación guardada exitosamente para el usuario {usuarioId}, puntuación: {puntuacion}");
                 return Ok("Puntuación guardada exitosamente");
@@ -104,6 +118,8 @@ namespace ProyectoAnalisis.Controllers
             throw new InvalidOperationException("No se pudo obtener el Id del usuario actual");
         }
 
+
+      
     }
    
 }

@@ -155,6 +155,7 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: transparent;">
                             <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Contenido">Contenido</a>
+                            <a class="dropdown-item" asp-area=""  asp-action="Volver">Volver</a>
                             <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Gramatica">Gramatica Presente simple </a>
                             <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Vocabulario" >Vocabulario </a>
 
@@ -166,12 +167,12 @@
                             Evaluativo
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: transparent;">
-                            <a class="dropdown-item" href="#">Historial de notas    </a>
+
                             <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Juego">Juego</a>
                             <a class="dropdown-item" asp-area="" asp-controller="Home" asp-action="Repasos">Repasos</a>
-          
-                            <a class="dropdown-item" href="#">Resultados </a>
-
+                            <a class="dropdown-item" asp-controller="HistorialPuntuacion" asp-action="Index">Ver Historial de Puntuaciones</a>
+                            <a class="dropdown-item" asp-area="" asp-action="Volver">Volver</a>
+                         
                         </div>
                     </li>
                     <li class="nav-item">
