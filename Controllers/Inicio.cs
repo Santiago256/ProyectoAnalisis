@@ -34,7 +34,7 @@ namespace ProyectoAnalisis.Controllers
             Usuario usuario_creado = await  _usuarioServicio.saveUsuario(modelo);
 
             if (usuario_creado.Id > 0)
-                return RedirectToAction("IniciarSesion", "Inicio");
+                return RedirectToAction("Index", "Home");
 
             ViewData["Mensaje"] = "No se pudo crear el usuario";
             return View();

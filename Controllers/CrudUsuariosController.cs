@@ -164,6 +164,7 @@ namespace ProyectoAnalisis.Controllers
         // GET: CrudUsuarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+           
             if (id == null || _context.Usuario == null)
             {
                 return NotFound();
@@ -175,28 +176,39 @@ namespace ProyectoAnalisis.Controllers
             {
                 return NotFound();
             }
-
+      
             return View(usuario);
         }
-
         // POST: CrudUsuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Usuario == null)
-            {
-                return Problem("Entity set 'BaseDeDatosUsuario.Usuario'  is null.");
-            }
             var usuario = await _context.Usuario.FindAsync(id);
-            if (usuario != null)
+            if (usuario == null)
             {
-                _context.Usuario.Remove(usuario);
+                return NotFound();
             }
-            
+
+            // Verificar si existen notas asociadas al usuario
+            var notasAsociadas = await _context.Notas.Where(n => n.UsuarioId == id).ToListAsync();
+            if (notasAsociadas.Any())
+            {
+                // Eliminar las notas asociadas al usuario
+                _context.Notas.RemoveRange(notasAsociadas);
+      
+            }
+        
+
+            // Eliminar el usuario
+            _context.Usuario.Remove(usuario);
+
+            // Guardar los cambios en la base de datos
             await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
+
 
         private bool UsuarioExists(int id)
         {

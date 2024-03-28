@@ -14,6 +14,7 @@ namespace ProyectoAnalisis.Models
         public string Nombre { get; set; }
 
         public string Rol { get; set; }
+        [Required(ErrorMessage = "Debes ingresar una nueva contraseña.")]
         public string Contraseña { get; set; }
         public string Direccion { get; set; }
         public string CorreoElectronico { get; set; }

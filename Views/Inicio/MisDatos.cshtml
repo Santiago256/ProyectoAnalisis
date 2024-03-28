@@ -1,0 +1,142 @@
+﻿@model ProyectoAnalisis.Models.Usuario;
+
+@{
+    Layout = null;
+}
+@if (ViewBag.ErroresValidacion != null && ViewBag.ErroresValidacion.Count > 0)
+{
+    <div class="alert alert-danger" role="alert">
+        <ul>
+            @foreach (var error in ViewBag.ErroresValidacion)
+            {
+                <li>@error</li>
+            }
+        </ul>
+    </div>
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Mis Datos</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Acme&family=Lora:wght@700&family=Montserrat:wght@900&family=Poppins:wght@900&display=swap" rel="stylesheet">
+
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .img {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1; /* Coloca la imagen detrás de los demás elementos */
+        }
+
+            .img img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+        .container {
+            z-index: 1; /* Asegura que los elementos dentro del contenedor estén encima de la imagen */
+        }
+
+        .mt-4-custom {
+            margin-top: 4rem; /* Ajusta el valor según tus necesidades */
+        }
+
+        .negrita-poppins {
+            color: #00131A;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 900;
+            font-size: 30px;
+            background-color: #A1E3F2;
+            text-align: center;
+        }
+
+        .card {
+            background-color: #DCEEF2;
+            font-family: 'Lora', sans-serif;
+        }
+
+        .btn-primary {
+            background-color: #8CC6FF; /* Cambia el color del botón a #8EFFFF */
+            color: #000000; /* Cambia el color del texto del botón */
+        }
+
+        .btn-secondary {
+            background-color: #90EE90;
+            color: #000000;
+        }
+
+            .btn-secondary:hover {
+                background-color: #5dd55d;
+                color: #ffffff;
+            }
+    </style>
+</head>
+
+<body>
+
+    <!-- Contenido de la página -->
+    <div class="container">
+        <div class="row justify-content-center mt-6">
+            <div class="col-12 col-xl-4 col-md-6">
+                <div class="card mt-4-custom">
+                    <div class="card-header negrita-poppins">
+                        Mis Datos
+                    </div>
+                    <div class="card-body">
+                        <form asp-controller="Home" asp-action="ActualizarDatos" method="post">
+                            <!-- Campos del formulario -->
+                            <div class="form-group">
+                                <label for="nombre">Nombre Completo:</label>
+                                <input class="form-control mb-3" type="text" id="nombre" asp-for="Nombre" />
+                            </div>
+                            <div class="form-group">
+                                <label for="correo">Correo:</label>
+                                <input class="form-control mb-3" type="text" id="correo" asp-for="CorreoElectronico" />
+                            </div>
+                            <div class="form-group">
+                                <label for="contraseña">Contraseña:</label>
+                                <input class="form-control mb-3" type="password" id="contraseña" asp-for="Contraseña" />
+                            </div>
+                            <div class="form-group">
+                                <label for="direccion">Dirección:</label>
+                                <input class="form-control mb-3" type="text" id="direccion" asp-for="Direccion" />
+                            </div>
+                            <div class="form-group">
+                                <label for="rol">Rol:</label>
+                                <select class="form-control" id="rol" asp-for="Rol">
+                                    <option value="Estudiante">Estudiante</option>
+                                    <option value="Profesor">Profesor</option>
+                                </select>
+                            </div>
+                            <!-- Campo oculto para el ID del usuario -->
+                            <input type="hidden" asp-for="Id" />
+
+                            <!-- Botón de guardar cambios -->
+                            <div class="d-grid gap-2 mb-3">
+                                <button class="btn btn-primary" type="submit">Guardar Cambios</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
