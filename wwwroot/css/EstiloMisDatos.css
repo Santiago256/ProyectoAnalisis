@@ -1,0 +1,47 @@
+﻿.glowing-icon-btn {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.glowing-icon {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0 0 10px var(--glow-color)); /* Añade un efecto de sombra alrededor del icono */
+}
+
+    .glowing-icon:hover {
+        animation: none;
+    }
+
+        .glowing-icon:hover::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--glow-color);
+            border-radius: 50%;
+            animation: icon-flicker 1s linear infinite;
+        }
+
+@keyframes icon-flicker {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    50% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}

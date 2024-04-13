@@ -13,8 +13,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Acme&family=Lora:wght@700&family=Montserrat:wght@900&family=Poppins:wght@800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap">
-    
-     <style>
+    <link rel="stylesheet" href="/css/EstiloMisDatos.css">
+    <style>
       .banner-image {
             background-image: url('@Url.Content("~/Img/Paisaje.jpg")');
             background-size: cover;
@@ -108,9 +108,7 @@
         
         }
 
-
-
-         
+   
 
     </style>
 </head>
@@ -184,9 +182,9 @@
                     </li>
                     <li class="nav-item">
                         <form method="post" asp-controller="Home" asp-action="MisDatos">
-                          
-                            <button type="submit" class="btn btn-link" style="display: inline-block; vertical-align: middle;">
-                                <img src="~/Img/UsuarioFinal.png" alt="Mis datos" width="40" height="40">
+
+                            <button type="submit" class="glowing-icon-btn">
+                                <img src="~/Img/UsuarioFinal.png" alt="Mis datos" width="40" height="40" class="glowing-icon">
                             </button>
                         </form>
                     </li>
@@ -209,6 +207,7 @@
 </body>
 
 </html>
+
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
