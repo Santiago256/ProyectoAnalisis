@@ -131,6 +131,14 @@ namespace ProyectoAnalisis.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public IActionResult Videos()
+        {
+          
+            return View("~/Views/Inicio/VideoInfo.cshtml");
+
+        }
+
+
         public IActionResult Vocabulario()
         {
             var palabras = new List<(string Palabra, string Imagen)>
